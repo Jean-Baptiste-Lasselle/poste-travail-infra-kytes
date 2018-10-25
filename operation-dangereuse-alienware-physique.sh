@@ -132,3 +132,9 @@ tmpfs          tmpfs     4.9G     0  4.9G   0% /sys/fs/cgroup
 tmpfs          tmpfs    1000M   16K 1000M   1% /run/user/116
 tmpfs          tmpfs    1000M   36K 1000M   1% /run/user/1000
 bobby@pc-alienware-jib:~/VirtualBox VMs$ 
+
+sudo mkfs.ext4 /dev/sde3
+
+mount /dev/sde3 /iaas
+sudo -s
+echo ""
