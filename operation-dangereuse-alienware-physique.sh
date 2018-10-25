@@ -58,11 +58,11 @@ sudo mkfs.ext4 /dev/sde3
 mount
 # - Finally we ensure that mount survives hardware reboots 
 echo "# - KYTES ALIENWARE RUBBISH DEVELOPER IAAS SPACE : Virtual Box's brother in arms mainly" >> ./append-to-fstab.kytes.temp
-echo "$NOUVEAU_DISQUE_DUR    ext4    0    0    /iaas" >> ./append-to-fstab.kytes.temp
+echo "$NOUVEAU_DISQUE_DUR   /home   ext4   defaults    0    0" >> ./append-to-fstab.kytes.temp
 sudo mv ./append-to-fstab.kytes.temp /root
 sudo -s
 cat /root/append-to-fstab.kytes.temp >> /etc/fstab
-# one exit will return to previous shell, and previous user, aka $USER_LX_OPERATEUR, (but USER_LX_OPERATEUR does not exist in that shell session's context -> oui c'est moi qui écris en anglais poulet)
+# one exit will return to previous shell, and previous user, aka $USER_LX_OPERATEUR, (but neither $USER_LX_OPERATEUR, nor $NOUVEAU_DISQUE_DUR, exist a env. variables in that shell session's context -> oui c'est moi qui écris en anglais poulet)
 exit
 
 }
