@@ -72,7 +72,7 @@ echo "ATTENTION!!!!! CE FICHIER N'A PAS ETE TESTE !!! N'eSSAYEZ PAS D'EXECUTER S
 exit 0
 
 
-bobby@pc-alienware-jib:~/VirtualBox VMs$ sudo fdisk -l
+bobby@pc-alienware-bobby:~/VirtualBox VMs$ sudo fdisk -l
 [sudo] password for bobby: 
 Disk /dev/sde: 931.5 GiB, 1000204886016 bytes, 1953525168 sectors
 Units: sectors of 1 * 512 = 512 bytes
@@ -99,10 +99,10 @@ Device     Boot     Start       End   Sectors   Size Id Type
 /dev/sdf2       565123070 586072063  20948994    10G  5 Extended
 /dev/sdf5       565123072 586072063  20948992    10G 82 Linux swap / Solaris
 
-bobby@pc-alienware-jib:~/VirtualBox VMs$ mkdir -p /iaas
+bobby@pc-alienware-bobby:~/VirtualBox VMs$ mkdir -p /iaas
 mkdir: cannot create directory ‘/iaas’: Permission denied
-bobby@pc-alienware-jib:~/VirtualBox VMs$ sudo mkdir -p /iaas
-bobby@pc-alienware-jib:~/VirtualBox VMs$ sudo fdisk /dev/sde3
+bobby@pc-alienware-bobby:~/VirtualBox VMs$ sudo mkdir -p /iaas
+bobby@pc-alienware-bobby:~/VirtualBox VMs$ sudo fdisk /dev/sde3
 
 Welcome to fdisk (util-linux 2.29.2).
 Changes will remain in memory only, until you decide to write them.
@@ -171,15 +171,27 @@ Command (m for help): d
 No partition is defined yet!
 Could not delete partition 1
 
-Command (m for help): w
+Command (m for help): n
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): p
+Partition number (1-4, default 1): 1
+First sector (2048-1929957375, default 2048): 
+Last sector, +sectors or +size{K,M,G,T,P} (2048-1929957375, default 1929957375): 
 
+Created a new partition 1 of type 'Linux' and of size 920.3 GiB.
+
+Command (m for help): w
 The partition table has been altered.
 Calling ioctl() to re-read partition table.
 Re-reading the partition table failed.: Invalid argument
 
 The kernel still uses the old table. The new table will be used at the next reboot or after you run partprobe(8) or kpartx(8).
 
-bobby@pc-alienware-jib:~/VirtualBox VMs$ df -TH
+The kernel still uses the old table. The new table will be used at the next reboot or after you run partprobe(8) or kpartx(8).
+
+bobby@pc-alienware-bobby:~/VirtualBox VMs$ df -TH
 Filesystem     Type      Size  Used Avail Use% Mounted on
 udev           devtmpfs  5.3G     0  5.3G   0% /dev
 tmpfs          tmpfs     1.1G   11M  1.1G   1% /run
@@ -189,7 +201,7 @@ tmpfs          tmpfs     5.3M  4.1k  5.3M   1% /run/lock
 tmpfs          tmpfs     5.3G     0  5.3G   0% /sys/fs/cgroup
 tmpfs          tmpfs     1.1G   17k  1.1G   1% /run/user/116
 tmpfs          tmpfs     1.1G   37k  1.1G   1% /run/user/1000
-bobby@pc-alienware-jib:~/VirtualBox VMs$ df -Th
+bobby@pc-alienware-bobby:~/VirtualBox VMs$ df -Th
 Filesystem     Type      Size  Used Avail Use% Mounted on
 udev           devtmpfs  4.9G     0  4.9G   0% /dev
 tmpfs          tmpfs    1000M  9.8M  990M   1% /run
@@ -199,7 +211,7 @@ tmpfs          tmpfs     5.0M  4.0K  5.0M   1% /run/lock
 tmpfs          tmpfs     4.9G     0  4.9G   0% /sys/fs/cgroup
 tmpfs          tmpfs    1000M   16K 1000M   1% /run/user/116
 tmpfs          tmpfs    1000M   36K 1000M   1% /run/user/1000
-bobby@pc-alienware-jib:~/VirtualBox VMs$ 
+bobby@pc-alienware-bobby:~/VirtualBox VMs$ 
 
 sudo mkfs.ext4 /dev/sde3
 
