@@ -1,4 +1,73 @@
 #!/bin/bash
+
+# -> env
+export NOUVEAU_DISQUE_DUR=/dev/sde3
+
+# -> fonctions
+executerMaRecette () {
+echo " "
+echo " "
+echo " Let's start with formating your hard drive : $ NOUVEAU_DISQUE_DUR"
+echo " "
+echo "  - To guide you, here are the steps to follow : "
+echo " "
+echo "       ++ 1. First, type 'm' and press Enter key, to display fdisk utility help   "
+echo " "
+echo "       ++ 2. Then, answer next questions 'd' and press Enter key, until fdisk tells you  :  "
+echo " "
+echo "No partition is defined yet!"
+echo "Could not delete partition 1"
+echo " "
+echo "              Which means there are no partitions left in your disk "
+echo " "
+echo "       ++ 3. After that, answer next question 'n' and press Enter key, to create a new partitionon your disk   "
+echo " "
+echo "       ++ 4. Then, answer the two next question by simply pressing Enter key, to choose default values for first and last sector physical address  of your new partition on your new hard-drive   "
+echo " "
+echo "       ++ 1. First, type 'm' and press Enter key, to display fdisk utility help   "
+echo " "
+echo " "
+echo " "
+sudo fdisk /dev/sde3
+}
+
+
+
+
+
+
+
+
+
+
+
+# -> ops
+echo "  "
+echo "  "
+echo " Voici le listing et détails de vos disques durs. "
+echo "  "
+echo "  "
+sudo fdisk -l
+echo "  "
+echo "  "
+while true; do
+    echo "  "
+    echo " le nouveau disque dur ajouté à votre alienware est : $NOUVEAU_DISQUE_DUR "
+    read -p " C'est bien cela ? (y/n) " yn
+    case $yn in
+        [Yy]* ) executerMaRecette; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer y (to answer yes) or n (to answer no).";;
+    esac
+done
+echo "  "
+echo "  "
+
+
+
+
+echo "  "
+echo "  "
 echo "ATTENTION!!!!! CE FICHIER N'A PAS ETE TESTE !!! N'eSSAYEZ PAS D'EXECUTER SON CODE HORS D'UNE VM IMAGE DE VOTRE MACHINE PHYSIQUE!!! "
 exit 0
 
@@ -29,7 +98,6 @@ Device     Boot     Start       End   Sectors   Size Id Type
 /dev/sdf1  *         2048 565121023 565118976 269.5G 83 Linux
 /dev/sdf2       565123070 586072063  20948994    10G  5 Extended
 /dev/sdf5       565123072 586072063  20948992    10G 82 Linux swap / Solaris
-
 
 bobby@pc-alienware-jib:~/VirtualBox VMs$ mkdir -p /iaas
 mkdir: cannot create directory ‘/iaas’: Permission denied
