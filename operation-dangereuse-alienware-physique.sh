@@ -2,7 +2,7 @@
 
 # -> env
 export NOUVEAU_DISQUE_DUR=/dev/sde3
-
+export USER_LX_OPERATEUR=$USER
 # -> fonctions
 executerMaRecette () {
 echo " "
@@ -57,9 +57,13 @@ sudo mkfs.ext4 /dev/sde3
 # - we mount /dev/sde3 on /iaas
 mount
 # - Finally we ensure that mount survives hardware reboots 
+echo "# - KYTES ALIENWARE RUBBISH DEVELOPER IAAS SPACE : Virtual Box's brother in arms mainly" >> ./append-to-fstab.kytes.temp
+echo "$NOUVEAU_DISQUE_DUR    ext4    0    0    /iaas" >> ./append-to-fstab.kytes.temp
+sudo mv ./append-to-fstab.kytes.temp /root
 sudo -s
-echo "  "
-echo "# - KYTES ALIENWARE RUBBISH DEVELOPER IAAS SPACE : Virtual Box's brother in arms mainly" >> 
+cat /root/append-to-fstab.kytes.temp >> /etc/fstab
+# one exit will return to previous shell, and previous user, aka $USER_LX_OPERATEUR, (but USER_LX_OPERATEUR does not exist in that shell session's context -> oui c'est moi qui écris en anglais poulet)
+exit
 
 }
 
@@ -82,6 +86,12 @@ echo "  "
 sudo fdisk -l
 echo "  "
 echo "  "
+
+echo "  "
+echo "  "
+echo "ATTENTION!!!!! CE FICHIER N'A PAS ETE TESTE !!! N'eSSAYEZ PAS D'EXECUTER SON CODE HORS D'UNE VM IMAGE DE VOTRE MACHINE PHYSIQUE!!! "
+exit 0
+
 while true; do
     echo "  "
     echo " le nouveau disque dur ajouté à votre alienware est : $NOUVEAU_DISQUE_DUR "
@@ -103,6 +113,7 @@ echo "  "
 echo "ATTENTION!!!!! CE FICHIER N'A PAS ETE TESTE !!! N'eSSAYEZ PAS D'EXECUTER SON CODE HORS D'UNE VM IMAGE DE VOTRE MACHINE PHYSIQUE!!! "
 exit 0
 
+###### POUR MONTRER QUELQUES EXEMPLES , au user exécutant ce script : 
 
 bobby@pc-alienware-bobby:~/VirtualBox VMs$ sudo fdisk -l
 [sudo] password for bobby: 
