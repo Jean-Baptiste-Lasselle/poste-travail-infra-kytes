@@ -55,7 +55,12 @@ echo " -->>> ------------------------------------------ <<<-- "
 sudo mkfs.ext4 /dev/sde3
 
 # - we mount /dev/sde3 on /iaas
-mount
+mount $NOUVEAU_DISQUE_DUR /iaas
+echo "  "
+echo "   Nouvelle taille du disque $NOUVEAU_DISQUE_DUR"
+echo "  "
+df -Th /iaas
+echo "  "
 # - Finally we ensure that mount survives hardware reboots 
 echo "# - KYTES ALIENWARE RUBBISH DEVELOPER IAAS SPACE : Virtual Box's brother in arms mainly" >> ./append-to-fstab.kytes.temp
 echo "$NOUVEAU_DISQUE_DUR   /home   ext4   defaults    0    0" >> ./append-to-fstab.kytes.temp
@@ -259,5 +264,10 @@ bobby@pc-alienware-bobby:~/VirtualBox VMs$
 
 
 mount /dev/sde3 /iaas
+jibl@pc-alienware-jib:~/VirtualBox VMs$ df -Th /iaas
+Filesystem     Type  Size  Used Avail Use% Mounted on
+/dev/sde3      ext4  905G   77M  859G   1% /iaas
+jibl@pc-alienware-jib:~/VirtualBox VMs$ 
+
 sudo -s
 echo ""
