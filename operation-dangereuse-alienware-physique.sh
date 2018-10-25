@@ -24,11 +24,43 @@ echo "       ++ 3. After that, answer next question 'n' and press Enter key, to 
 echo " "
 echo "       ++ 4. Then, answer the two next question by simply pressing Enter key, to choose default values for first and last sector physical address  of your new partition on your new hard-drive   "
 echo " "
-echo "       ++ 1. First, type 'm' and press Enter key, to display fdisk utility help   "
+echo "       ++ 1. Finally, type 'w' and press Enter key, to write new parition to your new hard drive disk  "
 echo " "
 echo " "
 echo " "
 sudo fdisk /dev/sde3
+
+echo " -->>> --------------------------------------------------- <<<-- "
+echo " -->>> Now We'LL FORMAT YOUR PARTITION TO EXT 4 FILESYSTEM <<<-- "
+echo " -->>> --------------------------------------------------- <<<-- "
+echo " -->>> ------------------------------------------ <<<-- "
+echo " -->>> OUTPUT SHOULD SEE IF MKFS EXT 4 SUCCEDED : <<<-- "
+echo " -->>> ------------------------------------------ <<<-- "
+echo "mke2fs 1.43.4 (31-Jan-2017)"
+echo "Found a dos partition table in /dev/sde3"
+echo "Proceed anyway? (y,N) y"
+echo "Creating filesystem with 241244672 4k blocks and 60317696 inodes"
+echo "Filesystem UUID: 36a685f6-6ed4-45e3-ab48-28da3ee2f44a"
+echo "Superblock backups stored on blocks: "
+echo "	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, "
+echo "	4096000, 7962624, 11239424, 20480000, 23887872, 71663616, 78675968, "
+echo "	102400000, 214990848"
+echo " "
+echo "Allocating group tables: done   "
+echo "Writing inode tables: done                            "
+echo "Creating journal (262144 blocks): done"
+echo "Writing superblocks and filesystem accounting information: done  "
+echo " "
+echo " -->>> ------------------------------------------ <<<-- "
+sudo mkfs.ext4 /dev/sde3
+
+# - we mount /dev/sde3 on /iaas
+mount
+# - Finally we ensure that mount survives hardware reboots 
+sudo -s
+echo "  "
+echo "# - KYTES ALIENWARE RUBBISH DEVELOPER IAAS SPACE : Virtual Box's brother in arms mainly" >> 
+
 }
 
 
@@ -213,7 +245,7 @@ tmpfs          tmpfs    1000M   16K 1000M   1% /run/user/116
 tmpfs          tmpfs    1000M   36K 1000M   1% /run/user/1000
 bobby@pc-alienware-bobby:~/VirtualBox VMs$ 
 
-sudo mkfs.ext4 /dev/sde3
+
 
 mount /dev/sde3 /iaas
 sudo -s
