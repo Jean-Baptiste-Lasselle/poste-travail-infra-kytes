@@ -165,9 +165,26 @@ Device     Boot Start       End   Sectors   Size Id Type
 jbl@pc-alienware-jbl:/media/jbl/point/montage$ 
 
 ```
+* Ci dessus, mon disque dur externe apparaît comme `/dev/sdh` : je l'ai vérifié, en nrachant/ débranchant mon disque dur externe.
+* Ci dessus, mon disque dur externe apparaît comme `/dev/sdh`, on voit que ces utilsiateurs précédents ont foramté et utilisé 3 partitions `/dev/sdh1`, `/dev/sdh2`, `/dev/sdh3` .
+
+
 * Ensuite, on va faire comme Debian (je ne prétends pas faire mieux, à la main), on va donc crééer un répertoire, dans `/media/$USER`, puis on va monter la partition que 'lon vient de démonter, sur ce nouveau répertoire. Mais au passage, comme nosu le faisons à la main, nous utiliserons toutes les optios à notre disposition, pour, avec l'utilisateur `root`, donner les droits en lecture / écriture sur cette partition, à l'utilisateur `$USER`. Bien. Pour terminer, il fautdera rendre ce paramétrage permaenent, si possible: que cette configuration persiste au re-démarage matériel.
 
 
 
+```bash
+# Je démonte la partition '/dev/sdh1', de mon disque dur externe '/dev/sdh'
+sudo umount /dev/sdh1
+# root prend la possession de tout ça,le temps des opérations système
+sudo chown -R root:root /media/jbl
+# il arrvie , selon le blend debian que vous vous êtes fait, que le package 'ntfs-3g' ne soit pas installé, je l'installe donc, et pusi je mets tout mon petit système en bonne santé, hein
+sudo apt-get upgrade -y && sudo apt-get update -y && sudo apt-get install -y ntfs-3g
+# Enfin, le remontage partition /dev/sdh1
+sudo mount -t ntfs-3g /dev/sdh1 /media/jbl/point/montage/
+# je rdonne la propriété aux propriétaire
+sudo chown -R root:root /media/jb
 
+
+```
 
