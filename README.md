@@ -186,3 +186,8 @@ sudo mount -t ntfs-3g /dev/sdh1 /media/jbl/point/montage/
 sudo chown -R root:root /media/jbl
 ```
 
+# FSTAB with UUIDs
+
+```bash
+echo "UUID=2c05271f-07db-462d-bbaa-c6f3216c15e6 /iaas ext4  errors=remount-ro 0 1" >> /etc/fstab
+```
