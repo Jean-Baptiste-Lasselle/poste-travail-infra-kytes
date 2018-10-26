@@ -183,8 +183,6 @@ sudo apt-get upgrade -y && sudo apt-get update -y && sudo apt-get install -y ntf
 # Enfin, le remontage partition /dev/sdh1
 sudo mount -t ntfs-3g /dev/sdh1 /media/jbl/point/montage/
 # je rdonne la propriété aux propriétaire
-sudo chown -R root:root /media/jb
-
-
+sudo chown -R root:root /media/jbl
 ```
 
